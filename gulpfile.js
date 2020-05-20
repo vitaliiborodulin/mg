@@ -6,8 +6,6 @@ const { src, dest, watch, task, series,	parallel} = require("gulp");
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 
-const fileinclude = require('gulp-file-include');
-
 const autoprefixer = require('gulp-autoprefixer');
 const preprocessor = require('gulp-less');
 const cleanCss = require('gulp-clean-css');
@@ -29,6 +27,7 @@ const imageminPngquant = require('imagemin-pngquant');
 
 const ghPages = require('gh-pages');
 const pathDeploy = require('path');
+const size = require('gulp-size');
 
 const isDev = process.argv.includes('--dev');
 const isProd = !isDev;
@@ -64,29 +63,15 @@ var path = {
 
 // Сборка HTML
 function html() {
-	console.log('---------- сборка HTML');
 	return src(path.src.html)
-		.pipe(plumber({
-			errorHandler: function(err) {
-			notify.onError({
-				title: 'HTML compilation error',
-				message: err.message
-			})(err);
-			this.emit('end');
-			}
-		}))
-		.pipe(fileinclude({
-			prefix: '@@',
-			basepath: '@file',
-			indent: true,
-		  }))
+    .pipe(rigger())
+    .pipe(size({showFiles: true, title: 'html'}))
 		.pipe(dest(path.build.html))
 		.pipe(gulpif(isSync, browserSync.stream()))
 }
 
 // Компиляция стилей
 function styles() {
-	console.log('---------- Компиляция стилей');
 	return src(path.src.css)
 		.pipe(plumber({
 			errorHandler: function(err) {
@@ -110,14 +95,14 @@ function styles() {
 		.pipe(gulpif(isProd, cleanCss({
 			level: 2
 		})))
-		.pipe(gulpif(isDev, sourcemaps.write()))
+    .pipe(gulpif(isDev, sourcemaps.write()))
+    .pipe(size({title: 'css'}))
 		.pipe(dest(path.build.css))
 		.pipe(gulpif(isSync, browserSync.stream()))
 }
 
 // Конкатенация и углификация Javascript
 function js() {
-	console.log('---------- Обработка JS');
 	return src(path.src.js, {
 			base: './src/js/'
 		})
@@ -136,14 +121,14 @@ function js() {
 		.pipe(gulpif(isProd, uglify({
 			toplevel: true
 		})))
-		.pipe(gulpif(isDev, sourcemaps.write()))
+    .pipe(gulpif(isDev, sourcemaps.write()))
+    .pipe(size({title: 'js'}))
 		.pipe(dest(path.build.js))
 		.pipe(gulpif(isSync, browserSync.stream()))
 }
 
 // Копирование изображений
 function img() {
-	console.log('---------- Копирование изображений');
 	return src(path.src.img)
 		.pipe(gulpif(isProd, imagemin([
 			imageminJpegRecompress({
@@ -161,7 +146,6 @@ function img() {
 
 // Копирование шрифтов
 function fonts() {
-	console.log('---------- Копирование шрифтов');
 	return src(path.src.fonts)
 		.pipe(dest(path.build.fonts))
 		.pipe(gulpif(isSync, browserSync.stream()))
@@ -169,7 +153,6 @@ function fonts() {
 
 // Очистка папки сборки
 function clean() {
-	console.log('---------- Очистка папки сборки');
 	return del(path.clean);
 }
 
@@ -195,7 +178,6 @@ function watchFiles() {
 
 // Перестроение сетки
 function grid(done) {
-	console.log('---------- Перестроение сетки');
 	delete require.cache[require.resolve('./smartgrid.js')];
 
 	let settings = require('./smartgrid.js');
@@ -205,7 +187,6 @@ function grid(done) {
 
 // Отправка в GH pages (ветку gh-pages репозитория)
 function deploy(cb) {
-	console.log('---------- Публикация содержимого ./build/ на GH pages');
 	ghPages.publish(pathDeploy.join(process.cwd(), './build'), cb);
 }
 

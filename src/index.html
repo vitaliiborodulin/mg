@@ -1,11 +1,41 @@
-@@include('html/head.html', { "title": "Главная" })
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
 
-<body>
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="img/favicon.png"/>
 
-	@@include('html/header.html')
-	@@include('html/main.html')
-	@@include('html/footer.html')
+    <title>Заголовок</title>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
 
+<body id="top">
+
+  <!-- шапка -->
+  //= html/header.html
+  <!-- end шапка -->
+
+  <!--  документация -->
+  //= html/documentation.html
+  <!-- end  документация -->
+
+  <!-- отзывы -->
+  //= html/reviews.html
+  <!-- end отзывы -->
+
+  <!-- footer -->
+  //= html/footer.html
+  <!-- end footer -->
+
+  <!-- popup -->
+  //= html/popup.html
+  <!-- end popup -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="js/script.js"></script>
 </body>
 

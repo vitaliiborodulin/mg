@@ -5,7 +5,7 @@
 # production
 /build
 # some addition contents, makets
-/addon
+/addon/
 
 # misc
 .DS_Store
