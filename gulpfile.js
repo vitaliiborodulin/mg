@@ -1,13 +1,13 @@
-'use strict';
-
 // Подключения зависимостей
 const { src, dest, watch, task, series,	parallel} = require("gulp");
 
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 
-const autoprefixer = require('gulp-autoprefixer');
-const preprocessor = require('gulp-less');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+
+const less = require('gulp-less');
 const cleanCss = require('gulp-clean-css');
 const gcmq = require('gulp-group-css-media-queries');
 const sourcemaps = require('gulp-sourcemaps');
@@ -21,17 +21,16 @@ const concat = require('gulp-concat');
 const rigger = require("gulp-rigger");
 const uglify = require('gulp-uglify-es').default;
 
-const imagemin = require('gulp-imagemin');
-const imageminJpegRecompress = require('imagemin-jpeg-recompress');
-const imageminPngquant = require('imagemin-pngquant');
-
 const ghPages = require('gh-pages');
 const pathDeploy = require('path');
 const size = require('gulp-size');
 
 const isDev = process.argv.includes('--dev');
 const isProd = !isDev;
-const isSync = process.argv.includes('--sync');
+
+var processors = [
+  autoprefixer
+];
 
 /* Paths */
 var path = {
@@ -67,7 +66,7 @@ function html() {
     .pipe(rigger())
     .pipe(size({showFiles: true, title: 'html'}))
 		.pipe(dest(path.build.html))
-		.pipe(gulpif(isSync, browserSync.stream()))
+		.pipe(browserSync.stream())
 }
 
 // Компиляция стилей
@@ -83,22 +82,16 @@ function styles() {
 			}
 		}))
 		.pipe(gulpif(isDev, sourcemaps.init()))
-		.pipe(preprocessor())
-		.pipe(gcmq())
-		.pipe(gulpif(isProd, autoprefixer({
-			overrideBrowserslist: [
-        "last 2 version",
-        "not dead",
-        "not ie <= 11"
-      ]
-		})))
+		.pipe(less())
+		.pipe(gulpif(isDev,gcmq()))
+    .pipe(gulpif(isProd, postcss(processors)))
 		.pipe(gulpif(isProd, cleanCss({
 			level: 2
 		})))
     .pipe(gulpif(isDev, sourcemaps.write()))
     .pipe(size({title: 'css'}))
 		.pipe(dest(path.build.css))
-		.pipe(gulpif(isSync, browserSync.stream()))
+		.pipe(browserSync.stream())
 }
 
 // Конкатенация и углификация Javascript
@@ -124,31 +117,21 @@ function js() {
     .pipe(gulpif(isDev, sourcemaps.write()))
     .pipe(size({title: 'js'}))
 		.pipe(dest(path.build.js))
-		.pipe(gulpif(isSync, browserSync.stream()))
+		.pipe(browserSync.stream())
 }
 
 // Копирование изображений
 function img() {
 	return src(path.src.img)
-		.pipe(gulpif(isProd, imagemin([
-			imageminJpegRecompress({
-				progressive: true,
-				min: 70,
-				max: 75
-			}),
-			imageminPngquant({
-				quality: [0.7, 0.75]
-			})
-		])))
 		.pipe(dest('./build/img'))
-		.pipe(gulpif(isSync, browserSync.stream()))
+		.pipe(browserSync.stream())
 }
 
 // Копирование шрифтов
 function fonts() {
 	return src(path.src.fonts)
 		.pipe(dest(path.build.fonts))
-		.pipe(gulpif(isSync, browserSync.stream()))
+		.pipe(browserSync.stream())
 }
 
 // Очистка папки сборки
@@ -158,7 +141,6 @@ function clean() {
 
 // Локальный сервер, слежение
 function watchFiles() {
-	if (isSync) {
 		browserSync.init({
 			server: {
 				baseDir: './build/'
@@ -166,7 +148,6 @@ function watchFiles() {
 			open: false
 			// online: false, // Work offline without internet connection
 		})
-	}
 
 	watch([path.watch.html], html);
 	watch([path.watch.css], styles);
