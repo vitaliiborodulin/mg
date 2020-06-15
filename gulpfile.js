@@ -1,188 +1,171 @@
-// Подключения зависимостей
-const { src, dest, watch, task, series,	parallel} = require("gulp");
+"use strict";
 
-const plumber = require('gulp-plumber');
-const notify = require('gulp-notify');
+const gulp = require("gulp");
+const webpack = require("webpack-stream");
+const browsersync = require("browser-sync");
 
-const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-
-const less = require('gulp-less');
-const cleanCss = require('gulp-clean-css');
-const gcmq = require('gulp-group-css-media-queries');
-const sourcemaps = require('gulp-sourcemaps');
-
-const del = require('del');
-const browserSync = require('browser-sync').create();
-const gulpif = require('gulp-if');
-const smartgrid = require('smart-grid');
-const concat = require('gulp-concat');
-
-const rigger = require("gulp-rigger");
-const uglify = require('gulp-uglify-es').default;
-
+const size = require('gulp-size');
 const ghPages = require('gh-pages');
 const pathDeploy = require('path');
-const size = require('gulp-size');
+const del = require('del');
 
-const isDev = process.argv.includes('--dev');
-const isProd = !isDev;
+const rigger = require("gulp-rigger");
 
-var processors = [
-  autoprefixer
-];
+const smartgrid = require('smart-grid');
+const sourcemaps = require('gulp-sourcemaps');
+const less = require('gulp-less');
+const autoprefixer = require('gulp-autoprefixer');
+const cleanCss = require('gulp-clean-css');
+const gcmq = require('gulp-group-css-media-queries');
 
-/* Paths */
-var path = {
-	src: {
-		html: "src/*.html",
-		js: "src/js/*.js",
-		css: "src/less/styles.less",
-		img: "src/img/**/*.{jpg,png,svg,gif,ico,webmanifest,xml}",
-		fonts: "src/fonts/*.{woff2,woff,eot,ttf}"
-	},
-	build: {
-		html: "build/",
-		js: "build/js/",
-		css: "build/css/",
-		img: "build/img/",
-		fonts: "build/fonts/"
-	},
-	watch: {
-		html: "src/**/*.html",
-		js: "src/js/**/*.js",
-		css: "src/less/**/*.less",
-		img: "src/img/**/*.{jpg,png,svg,gif,ico,webmanifest,xml}",
-		fonts: "src/fonts/*.{woff2,woff,eot,ttf}"
-	},
-	clean: "./build/*"
-}
+const dist = "./dist/";
 
-/* Tasks */
+// Компиляция html
+gulp.task("build-html", () => {
+    return gulp.src("./src/*.html")
+        .pipe(rigger())
+        .pipe(size({
+            showFiles: true, 
+            title: 'html'
+        }))
+        .pipe(gulp.dest(dist))
+        .pipe(browsersync.stream());
+});
 
-// Сборка HTML
-function html() {
-	return src(path.src.html)
-    .pipe(rigger())
-    .pipe(size({showFiles: true, title: 'html'}))
-		.pipe(dest(path.build.html))
-		.pipe(browserSync.stream())
-}
+// Компиляция стилей разработка
+gulp.task("build-dev-css", () => {
+    return gulp.src("./src/less/styles.less")
+        .pipe(sourcemaps.init())
+        .pipe(less())
+        .pipe(gcmq())//?
+        .pipe(autoprefixer())
+        .pipe(sourcemaps.write())
+        .pipe(size({showFiles: true, title: 'css-dev'}))
+        .pipe(gulp.dest(dist + "/css"))
+        .pipe(browsersync.stream());
+});
 
-// Компиляция стилей
-function styles() {
-	return src(path.src.css)
-		.pipe(plumber({
-			errorHandler: function(err) {
-			notify.onError({
-				title: 'Styles compilation error',
-				message: err.message
-			})(err);
-			this.emit('end');
-			}
-		}))
-		.pipe(gulpif(isDev, sourcemaps.init()))
-		.pipe(less())
-		.pipe(gulpif(isDev,gcmq()))
-    .pipe(gulpif(isProd, postcss(processors)))
-		.pipe(gulpif(isProd, cleanCss({
-			level: 2
-		})))
-    .pipe(gulpif(isDev, sourcemaps.write()))
-    .pipe(size({title: 'css'}))
-		.pipe(dest(path.build.css))
-		.pipe(browserSync.stream())
-}
-
-// Конкатенация и углификация Javascript
-function js() {
-	return src(path.src.js, {
-			base: './src/js/'
-		})
-		.pipe(plumber({
-			errorHandler: function(err) {
-			  notify.onError({
-				title: 'Javascript error',
-				message: err.message
-			  })(err);
-			  this.emit('end');
-			}
-		}))
-		.pipe(rigger())
-		.pipe(gulpif(isDev, sourcemaps.init()))
-		.pipe(concat('script.js'))
-		.pipe(gulpif(isProd, uglify({
-			toplevel: true
-		})))
-    .pipe(gulpif(isDev, sourcemaps.write()))
-    .pipe(size({title: 'js'}))
-		.pipe(dest(path.build.js))
-		.pipe(browserSync.stream())
-}
-
-// Копирование изображений
-function img() {
-	return src(path.src.img)
-		.pipe(dest('./build/img'))
-		.pipe(browserSync.stream())
-}
-
-// Копирование шрифтов
-function fonts() {
-	return src(path.src.fonts)
-		.pipe(dest(path.build.fonts))
-		.pipe(browserSync.stream())
-}
-
-// Очистка папки сборки
-function clean() {
-	return del(path.clean);
-}
-
-// Локальный сервер, слежение
-function watchFiles() {
-		browserSync.init({
-			server: {
-				baseDir: './build/'
-			},
-			open: false
-			// online: false, // Work offline without internet connection
-		})
-
-	watch([path.watch.html], html);
-	watch([path.watch.css], styles);
-	watch([path.watch.js], js);
-	watch([path.watch.img], img);
-	watch([path.watch.fonts], fonts);
-	watch('./smartgrid.js', grid);
-}
+// Компиляция стилей продакшен
+gulp.task("build-prod-css", () => {
+    return gulp.src("./src/less/styles.less")
+        .pipe(less())
+        .pipe(autoprefixer())
+        .pipe(cleanCss({
+            level: 2
+        }))
+        .pipe(size({showFiles: true, title: 'css-prod'}))
+        .pipe(gulp.dest(dist + "/css"))
+        .pipe(browsersync.stream());
+});
 
 // Перестроение сетки
-function grid(done) {
-	delete require.cache[require.resolve('./smartgrid.js')];
+gulp.task("smartgrid", (done) => {
+    delete require.cache[require.resolve('./smartgrid.js')];
 
 	let settings = require('./smartgrid.js');
 	smartgrid('./src/less', settings);
 	done();
-}
+})
+
+// Компиляция js разработка
+gulp.task("build-dev-js", () => {
+    return gulp.src("./src/js/main.js")
+        .pipe(webpack({
+            mode: 'development',
+            output: {
+                filename: 'script.js'
+            },
+            watch: false,
+            devtool: "source-map",
+            module: {
+                rules: [{
+                    test: /\.m?js$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                        presets: [['@babel/preset-env', {
+                            debug: true,
+                            corejs: 3,
+                            useBuiltIns: "usage"
+                        }]]
+                        }
+                    }
+                }]
+            }
+        }))
+        .pipe(gulp.dest(dist + "js"))
+        .on("end", browsersync.reload);
+});
+
+// Компиляция js продакшен
+gulp.task("build-prod-js", () => {
+    return gulp.src("./src/js/main.js")
+        .pipe(webpack({
+            mode: 'production',
+            output: {
+                filename: 'script.js'
+            },
+            module: {
+                rules: [{
+                    test: /\.m?js$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                        presets: [['@babel/preset-env', {
+                            corejs: 3,
+                            useBuiltIns: "usage"
+                        }]]
+                        }
+                    }
+                }]
+            }
+        }))
+        .pipe(gulp.dest(dist + "js"));
+});
+
+// Копирование изображений
+gulp.task("copy-img", () => {
+    return gulp.src("./src/img/**/*.{jpg,png,svg,gif,ico,webmanifest,xml}")
+		.pipe(gulp.dest(dist + "img"))
+		.on("end", browsersync.reload);
+})
+
+// Копирование шрифтов
+gulp.task("copy-fonts", () => {
+    return gulp.src("./src/fonts/*.{woff2,woff,eot,ttf}")
+		.pipe(gulp.dest(dist + "fonts"))
+		.on("end", browsersync.reload);
+})
 
 // Отправка в GH pages (ветку gh-pages репозитория)
-function deploy(cb) {
-	ghPages.publish(pathDeploy.join(process.cwd(), './build'), cb);
-}
+gulp.task("deploy", (cb) => {
+    ghPages.publish(pathDeploy.join(process.cwd(), dist), cb);
+})
 
-/* Exports Tasks */
-exports.clean = clean;
-exports.html = html;
-// exports.css = styles;
-exports.js = js;
-// exports.img = img;
-// exports.fonts = fonts;
-// exports.watch = watchFiles;
+// Очистка папки сборки
+gulp.task("clean", () => {
+    return del(dist);
+})
 
-exports.deploy = deploy;
+gulp.task("watch", () => {
+    browsersync.init({
+		server: "./dist/",
+		port: 4000,
+		notify: true
+    });
+    
+    gulp.watch("./src/*.html", gulp.parallel("build-html"));
+    gulp.watch("./src/less/**/*.less", gulp.parallel("build-dev-css"));
+    gulp.watch("./src/js/**/*.js", gulp.parallel("build-dev-js"));
+    gulp.watch("./src/img/**/*.{jpg,png,svg,gif,ico,webmanifest,xml}", gulp.parallel("copy-img"));
+    gulp.watch("./src/fonts/*.{woff2,woff,eot,ttf}", gulp.parallel("copy-fonts"));
+});
 
-let build = series(clean, parallel(html, styles, js, img, fonts));
-task('build', series(grid, build));
-task('watch', series(build, watchFiles));
-task('grid', grid);
+//конфиг для разработки
+gulp.task("develop", gulp.series("clean", gulp.parallel("build-html", "build-dev-css", "build-dev-js", "copy-img", "copy-fonts"), "watch"));
+//конфиг для сборки в продакшен
+gulp.task("build", gulp.series("clean", gulp.parallel("build-html", "build-prod-css", "build-prod-js", "copy-img", "copy-fonts")));
+
+// gulp.task("default", gulp.parallel("watch", "build"));
