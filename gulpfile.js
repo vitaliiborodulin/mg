@@ -1,15 +1,12 @@
-"use strict";
+const gulp = require('gulp');
+const webpack = require('webpack-stream');
+const sync = require('browser-sync');
 
-const gulp = require("gulp");
-const webpack = require("webpack-stream");
-const browsersync = require("browser-sync");
-
-const size = require('gulp-size');
+const htmlmin = require('gulp-htmlmin');
+const rigger = require('gulp-rigger');
 const ghPages = require('gh-pages');
 const pathDeploy = require('path');
 const del = require('del');
-
-const rigger = require("gulp-rigger");
 
 const smartgrid = require('smart-grid');
 const sourcemaps = require('gulp-sourcemaps');
@@ -20,55 +17,69 @@ const gcmq = require('gulp-group-css-media-queries');
 
 const dist = "./dist/";
 
-// Компиляция html
-gulp.task("build-html", () => {
+// HTML
+const htmlDev = () => {
+    return gulp.src("./src/*.html")
+    .pipe(rigger())
+    .pipe(gulp.dest(dist))
+    .pipe(sync.stream());
+}
+
+exports.htmlDev = htmlDev;
+
+const htmlProd = () => {
     return gulp.src("./src/*.html")
         .pipe(rigger())
-        .pipe(size({
-            showFiles: true, 
-            title: 'html'
+        .pipe(htmlmin({
+            removeComments: true,
+            collapseWhitespace: true
         }))
         .pipe(gulp.dest(dist))
-        .pipe(browsersync.stream());
-});
+        .pipe(sync.stream());
+}
 
-// Компиляция стилей разработка
-gulp.task("build-dev-css", () => {
+exports.htmlProd = htmlProd;
+
+// Styles 
+const cssDev = () => {
     return gulp.src("./src/less/styles.less")
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(gcmq())//?
         .pipe(autoprefixer())
         .pipe(sourcemaps.write())
-        .pipe(size({showFiles: true, title: 'css-dev'}))
         .pipe(gulp.dest(dist + "/css"))
-        .pipe(browsersync.stream());
-});
+        .pipe(sync.stream());
+}
 
-// Компиляция стилей продакшен
-gulp.task("build-prod-css", () => {
+exports.cssDev = cssDev;
+
+const cssProd = () => {
     return gulp.src("./src/less/styles.less")
         .pipe(less())
         .pipe(autoprefixer())
         .pipe(cleanCss({
             level: 2
         }))
-        .pipe(size({showFiles: true, title: 'css-prod'}))
         .pipe(gulp.dest(dist + "/css"))
-        .pipe(browsersync.stream());
-});
+        .pipe(sync.stream());
+}
 
-// Перестроение сетки
-gulp.task("smartgrid", (done) => {
+exports.cssProd = cssProd;
+
+// Smartgrid
+const grid = (done) => {
     delete require.cache[require.resolve('./smartgrid.js')];
 
 	let settings = require('./smartgrid.js');
 	smartgrid('./src/less', settings);
 	done();
-})
+}
 
-// Компиляция js разработка
-gulp.task("build-dev-js", () => {
+exports.grid = grid;
+
+// Scripts
+const jsDev = () => {
     return gulp.src("./src/js/main.js")
         .pipe(webpack({
             mode: 'development',
@@ -95,11 +106,12 @@ gulp.task("build-dev-js", () => {
             }
         }))
         .pipe(gulp.dest(dist + "js"))
-        .on("end", browsersync.reload);
-});
+        .on("end", sync.reload);
+}
 
-// Компиляция js продакшен
-gulp.task("build-prod-js", () => {
+exports.jsDev = jsDev;
+
+const jsProd = () => {
     return gulp.src("./src/js/main.js")
         .pipe(webpack({
             mode: 'production',
@@ -123,49 +135,87 @@ gulp.task("build-prod-js", () => {
             }
         }))
         .pipe(gulp.dest(dist + "js"));
-});
+}
 
-// Копирование изображений
-gulp.task("copy-img", () => {
-    return gulp.src("./src/img/**/*.{jpg,png,svg,gif,ico,webmanifest,xml}")
-		.pipe(gulp.dest(dist + "img"))
-		.on("end", browsersync.reload);
-})
+exports.jsProd = jsProd;
 
-// Копирование шрифтов
-gulp.task("copy-fonts", () => {
-    return gulp.src("./src/fonts/*.{woff2,woff,eot,ttf}")
-		.pipe(gulp.dest(dist + "fonts"))
-		.on("end", browsersync.reload);
-})
+// Copy
+const copy = () => {
+    return gulp.src([
+        "src/fonts/**/*",
+        "src/img/**/*",
+    ], {
+        base: 'src'
+    })
+    .pipe(gulp.dest(dist))
+    .pipe(sync.stream({
+        once: true
+    }));
+}
 
-// Отправка в GH pages (ветку gh-pages репозитория)
-gulp.task("deploy", (cb) => {
+exports.copy = copy;
+
+// Gh-pages
+const deploy = (cb) => {
     ghPages.publish(pathDeploy.join(process.cwd(), dist), cb);
-})
+}
 
-// Очистка папки сборки
-gulp.task("clean", () => {
+exports.deploy = deploy;
+
+// Clean
+const clean = () => {
     return del(dist);
-})
+}
 
-gulp.task("watch", () => {
-    browsersync.init({
-		server: "./dist/",
-		port: 4000,
-		notify: true
+exports.clean = clean;
+
+//Server
+const server = () => {
+    sync.init({
+        server: dist,
+        port: 4000,
+        notify: false,
+        ui: false
     });
-    
-    gulp.watch("./src/*.html", gulp.parallel("build-html"));
-    gulp.watch("./src/less/**/*.less", gulp.parallel("build-dev-css"));
-    gulp.watch("./src/js/**/*.js", gulp.parallel("build-dev-js"));
-    gulp.watch("./src/img/**/*.{jpg,png,svg,gif,ico,webmanifest,xml}", gulp.parallel("copy-img"));
-    gulp.watch("./src/fonts/*.{woff2,woff,eot,ttf}", gulp.parallel("copy-fonts"));
-});
+}
 
-//конфиг для разработки
-gulp.task("develop", gulp.series("clean", gulp.parallel("build-html", "build-dev-css", "build-dev-js", "copy-img", "copy-fonts"), "watch"));
-//конфиг для сборки в продакшен
-gulp.task("build", gulp.series("clean", gulp.parallel("build-html", "build-prod-css", "build-prod-js", "copy-img", "copy-fonts")));
+exports.server = server;
 
-// gulp.task("default", gulp.parallel("watch", "build"));
+//Watch
+const watch = () => {
+    gulp.watch("./src/*.html", gulp.series(htmlDev));
+    gulp.watch("./src/less/**/*.less", gulp.series(cssDev));
+    gulp.watch("./src/js/**/*.js", gulp.series(jsDev));
+    gulp.watch([
+        "src/fonts/**/*",
+        "src/img/**/*",
+    ], gulp.series("copy"));
+}
+
+exports.watch = watch;
+
+//Dev config
+exports.dev = gulp.series(
+    clean,
+    gulp.parallel(
+        htmlDev,
+        cssDev,
+        jsDev,
+        copy
+    ),
+    gulp.parallel(
+        watch,
+        server
+    )
+);
+
+//Build config
+exports.build = gulp.series(
+    clean,
+    gulp.parallel(
+        htmlProd,
+        cssProd,
+        jsProd,
+        copy
+    )
+);
