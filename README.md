@@ -1,4 +1,4 @@
-# Starter pack for webdev
+# mg
 
 ## Technologies
 

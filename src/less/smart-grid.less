@@ -1,11 +1,18 @@
 @columns: 12;
 @atom: (100% / @columns);
 
+@break_md: 768px;
+@break_xs: 480px;
+
 @offset: 30px;
+@offset_md: @offset;
+@offset_xs: @offset;
 
 @offset_one_side: (@offset / 2);
+@offset_md_one_side: (@offset_md / 2);
+@offset_xs_one_side: (@offset_xs / 2);
 
-@fields: 40px;
+@fields: 15px;
 
 .wrapper-full(){
     padding-left: @fields;
@@ -68,6 +75,16 @@
     width: @val;
 }
 
+.size-md(@n){
+    @val: ~"calc(100% / @{columns} * @{n} - @{offset_md})";
+    .md(width, @val);
+}
+
+.size-xs(@n){
+    @val: ~"calc(100% / @{columns} * @{n} - @{offset_xs})";
+    .xs(width, @val);
+}
+
 .shift(@n){
     @val: ~"calc(100% / @{columns} * @{n} + @{offset_one_side})";
     margin-left: @val;
@@ -98,6 +115,94 @@
 .shift-padding-right(@n){
     @val: ~"calc(100% / @{columns} * @{n} + @{offset_one_side})";
     padding-right: @val;
+}
+
+.shift-md(@n){
+    @val: ~"calc(100% / @{columns} * @{n} + @{offset_md_one_side})";
+    .md(margin-left, @val);
+    .md(margin-right, @val);
+}
+
+.shift-md-left(@n){
+    @val: ~"calc(100% / @{columns} * @{n} + @{offset_md_one_side})";
+    .md(margin-left, @val);
+}
+
+.shift-md-right(@n){
+    @val: ~"calc(100% / @{columns} * @{n} + @{offset_md_one_side})";
+    .md(margin-right, @val);
+}
+
+.shift-md-padding(@n){
+    @val: ~"calc(100% / @{columns} * @{n} + @{offset_md_one_side})";
+    .md(padding-left, @val);
+    .md(padding-right, @val);
+}
+
+.shift-md-padding-left(@n){
+    @val: ~"calc(100% / @{columns} * @{n} + @{offset_md_one_side})";
+    .md(padding-left, @val);
+}
+
+.shift-md-padding-right(@n){
+    @val: ~"calc(100% / @{columns} * @{n} + @{offset_md_one_side})";
+    .md(padding-right, @val);
+}
+
+.shift-xs(@n){
+    @val: ~"calc(100% / @{columns} * @{n} + @{offset_xs_one_side})";
+    .xs(margin-left, @val);
+    .xs(margin-right, @val);
+}
+
+.shift-xs-left(@n){
+    @val: ~"calc(100% / @{columns} * @{n} + @{offset_xs_one_side})";
+    .xs(margin-left, @val);
+}
+
+.shift-xs-right(@n){
+    @val: ~"calc(100% / @{columns} * @{n} + @{offset_xs_one_side})";
+    .xs(margin-right, @val);
+}
+
+.shift-xs-padding(@n){
+    @val: ~"calc(100% / @{columns} * @{n} + @{offset_xs_one_side})";
+    .xs(padding-left, @val);
+    .xs(padding-right, @val);
+}
+
+.shift-xs-padding-left(@n){
+    @val: ~"calc(100% / @{columns} * @{n} + @{offset_xs_one_side})";
+    .xs(padding-left, @val);
+}
+
+.shift-xs-padding-right(@n){
+    @val: ~"calc(100% / @{columns} * @{n} + @{offset_xs_one_side})";
+    .xs(padding-right, @val);
+}
+
+.md(@name, @value){
+    @media screen and (max-width: @break_md){
+        @{name}: @value;
+    }
+}
+
+.md-block(@content){
+    @media screen and (max-width: @break_md){
+        @content();
+    }
+}
+
+.xs(@name, @value){
+    @media screen and (max-width: @break_xs){
+        @{name}: @value;
+    }
+}
+
+.xs-block(@content){
+    @media screen and (max-width: @break_xs){
+        @content();
+    }
 }
 
 .from(@min_width, @content){

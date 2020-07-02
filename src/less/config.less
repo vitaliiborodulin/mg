@@ -1,9 +1,45 @@
 // USER VARIABLES SECTION
 
-@accent: orange; // Accent Color
+@accent: #ff7faf; // Accent Color
 @fontsize: 16px; // Body Font Size
-@textcolor: #000; // Text Color
-@mainfamily: 'PT Sans Narrow', sans-serif; // Main Font Family
+@textcolor: #939393; // Text Color
+@mainfamily: 'Futura New', sans-serif; // Main Font Family
+
+
+// FONTS LOAD SECTION
+
+@font-face {
+    font-family: 'Futura New';
+    src: local('Futura New Medium Reg'), local('Futura-New-Medium-Reg'),
+        url('../fonts/FuturaNewMedium-Reg.woff2') format('woff2'),
+        url('../fonts/FuturaNewMedium-Reg.woff') format('woff'),
+        url('../fonts/FuturaNewMedium-Reg.ttf') format('truetype');
+	font-display: swap;
+	font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Futura New';
+    src: local('Futura New Heavy Reg'), local('Futura-New-Heavy-Reg'),
+        url('../fonts/FuturaNewHeavy-Reg.woff2') format('woff2'),
+        url('../fonts/FuturaNewHeavy-Reg.woff') format('woff'),
+		url('../fonts/FuturaNewHeavy-Reg.ttf') format('truetype');
+	font-display: swap;
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Futura New';
+    src: local('Futura New Book Reg'), local('Futura-New-Book-Reg'),
+        url('../fonts/FuturaNewBook-Reg.woff2') format('woff2'),
+        url('../fonts/FuturaNewBook-Reg.woff') format('woff'),
+		url('../fonts/FuturaNewBook-Reg.ttf') format('truetype');
+	font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+  }
 
 // GENERAL DOCUMENT STYLES
 
@@ -47,10 +83,10 @@ body {
 	position: relative;
 	// line-height: 1.65;
 	font-family: @mainfamily;
-	font-weight: 400;
+	font-weight: normal;
 	// overflow-x: hidden;
-  color: @textcolor;
-  // letter-spacing: 0.01em;
+  	color: @textcolor;
+  	// letter-spacing: 0.01em;
 }
 
 

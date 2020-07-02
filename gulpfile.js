@@ -184,6 +184,7 @@ exports.server = server;
 //Watch
 const watch = () => {
     gulp.watch("./src/*.html", gulp.series(htmlDev));
+    gulp.watch("./src/html/*.html", gulp.series(htmlDev));
     gulp.watch("./src/less/**/*.less", gulp.series(cssDev));
     gulp.watch("./src/js/**/*.js", gulp.series(jsDev));
     gulp.watch([
