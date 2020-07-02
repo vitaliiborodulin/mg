@@ -1,9 +1,17 @@
 .btn {
+    display: block;
     padding: 12px 30px;
     border-radius: 50px;
     background-color: @accent;
     color: #ffffff;
     font-size: 14px;
 
+    border: none;
+    cursor: pointer;
     text-decoration: none;
+    transition: background-color 0.5s;
+
+    &:hover {
+        background-color: darken(@accent, 10%);
+    }
 }
