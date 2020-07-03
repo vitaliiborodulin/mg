@@ -3,6 +3,7 @@
 
 $(function(){
 
+   //= components/scrollTop.js
    //= components/slider.js
 
   });
