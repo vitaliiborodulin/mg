@@ -1,10 +1,8 @@
-// import $ from 'jquery';
-import modals from './modules/modals';
+//= ../../node_modules/jquery/dist/jquery.js
+//= ../../node_modules/owl.carousel/dist/owl.carousel.js
 
-window.addEventListener('DOMContentLoaded', () => {
-    modals();
-});
+$(function(){
 
-// $(function(){
-//     console.log(1);
-// })
+   //= components/slider.js
+
+  });

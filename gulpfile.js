@@ -1,14 +1,15 @@
 const gulp = require('gulp');
-const webpack = require('webpack-stream');
 const sync = require('browser-sync');
 
 const htmlmin = require('gulp-htmlmin');
+const uglify = require('gulp-uglify-es').default;
 const rigger = require('gulp-rigger');
 const ghPages = require('gh-pages');
 const pathDeploy = require('path');
 const del = require('del');
 
 const smartgrid = require('smart-grid');
+const concat = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
 const less = require('gulp-less');
 const autoprefixer = require('gulp-autoprefixer');
@@ -30,10 +31,10 @@ exports.htmlDev = htmlDev;
 const htmlProd = () => {
     return gulp.src("./src/*.html")
         .pipe(rigger())
-        .pipe(htmlmin({
-            removeComments: true,
-            collapseWhitespace: true
-        }))
+        // .pipe(htmlmin({
+        //     removeComments: true,
+        //     collapseWhitespace: true
+        // }))
         .pipe(gulp.dest(dist))
         .pipe(sync.stream());
 }
@@ -80,61 +81,30 @@ exports.grid = grid;
 
 // Scripts
 const jsDev = () => {
-    return gulp.src("./src/js/main.js")
-        .pipe(webpack({
-            mode: 'development',
-            output: {
-                filename: 'script.js'
-            },
-            watch: false,
-            devtool: "source-map",
-            module: {
-                rules: [{
-                    test: /\.m?js$/,
-                    exclude: /node_modules/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                        presets: [['@babel/preset-env', {
-                            debug: true,
-                            corejs: 3,
-                            useBuiltIns: "usage"
-                        }]]
-                        }
-                    }
-                }]
-            }
-        }))
-        .pipe(gulp.dest(dist + "js"))
-        .on("end", sync.reload);
+    return gulp.src('./src/js/*.js', {
+        base: './src/js/'
+    })
+    .pipe(rigger())
+    .pipe(sourcemaps.init())
+    .pipe(concat('script.js'))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(dist + "js"))
+    .pipe(sync.stream())
 }
 
 exports.jsDev = jsDev;
 
 const jsProd = () => {
-    return gulp.src("./src/js/main.js")
-        .pipe(webpack({
-            mode: 'production',
-            output: {
-                filename: 'script.js'
-            },
-            module: {
-                rules: [{
-                    test: /\.m?js$/,
-                    exclude: /node_modules/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                        presets: [['@babel/preset-env', {
-                            corejs: 3,
-                            useBuiltIns: "usage"
-                        }]]
-                        }
-                    }
-                }]
-            }
-        }))
-        .pipe(gulp.dest(dist + "js"));
+    return gulp.src('./src/js/*.js', {
+        base: './src/js/'
+    })
+    .pipe(rigger())
+    .pipe(concat('script.js'))
+    .pipe(uglify({
+        toplevel: true
+    }))
+    .pipe(gulp.dest(dist + "js"))
+    .pipe(sync.stream())
 }
 
 exports.jsProd = jsProd;
