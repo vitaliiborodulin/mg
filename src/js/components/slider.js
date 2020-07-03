@@ -1,3 +1,11 @@
+$('.about__list--mob').owlCarousel({
+    loop:true,
+    nav:true,
+    margin:10,
+    dots: true,
+    items:1
+})
+
 $('.team__list').owlCarousel({
     loop:true,
     nav:true,
@@ -13,7 +21,7 @@ $('.team__list').owlCarousel({
             dots: false
         }
     }
-  })
+})
 
   $('.sert__list').owlCarousel({
     loop:true,
@@ -30,4 +38,5 @@ $('.team__list').owlCarousel({
             dots: false
         }
     }
-  })
+})
+
