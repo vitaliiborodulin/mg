@@ -1,0 +1,44 @@
+.sert {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: url('../img/sert-bg.jpg') no-repeat center top/cover;
+    .md-block({
+        background-position: 22% bottom;
+    });
+}
+
+.sert__header {
+    margin-bottom: 20px;
+    text-align: left;
+    .md(text-align, center);
+}
+.sert__descr {
+    margin-bottom: 60px;
+    line-height: 24px;
+    max-width: 530px;
+    .md-block({
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    });
+}
+
+.sert__item {
+    transition: all 0.5s;
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.sert__item a{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    margin-bottom: 20px;
+    img {
+        display: block;
+        width: 190px!important;
+        height: 261px;
+        margin: 0 auto;
+    }
+}
