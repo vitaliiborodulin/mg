@@ -9,5 +9,6 @@ $(function(){
    //= components/imageLightbox.js
    //= components/faq.js
    //= components/map.js
+   //= components/arrowUpBtn.js
 
   });
