@@ -7,5 +7,6 @@ $(function(){
    //= components/scrollTop.js
    //= components/slider.js
    //= components/imageLightbox.js
+   //= components/faq.js
 
   });

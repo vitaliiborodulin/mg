@@ -1,0 +1,98 @@
+.faq {
+    padding-top: 53px;
+    padding-bottom: 31px;
+    // min-height: 528px;
+    background: #f6f6ff url('../img/faq-bg.jpg') no-repeat center top;
+    .md(background, #f6f6ff);
+}
+
+.faq__content {
+    .row-flex();
+}
+.faq__text {
+    .col();
+    .size(7);
+    .size-md(12);
+}
+.faq__header {
+    font-size: 25px;
+    font-weight: 500;
+    color: @textcolorDark;
+    margin-bottom: 33px;
+    .md(text-align, center);
+}
+.faq__box {
+    min-height: 652px;
+    padding-left: 30px;
+}
+.faq__item {
+    margin-bottom: 30px;
+}
+.faq__question {
+    position: relative;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    color: @textcolorDark;
+
+    cursor: pointer;
+    &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: -25px;
+        width: 20px;
+        height: 20px;
+        background:
+          linear-gradient(@accent,@accent),
+          linear-gradient(@accent,@accent);
+        background-position: center;
+        background-size: 100% 5px,5px 100%; 
+        background-repeat: no-repeat;
+        
+    }
+}
+.faq__question--open {
+    &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: -25px;
+        width: 20px;
+        height: 20px;
+        background:
+          linear-gradient(@accent,@accent);
+        background-position: center;
+        background-size: 100% 5px;
+        background-repeat: no-repeat;
+        
+    }
+}
+
+.faq__answer {
+    line-height: 21px;
+    display: none;
+    li {
+        position: relative;
+        padding-left: 13px;
+        &::before {
+            display: block;
+            content: '';
+            position: absolute;
+            top: 9px;
+            left: 0;
+            width: 6px;
+            height: 6px;
+            background-color: @accent;
+            border-radius: 50%;
+        }
+    }
+}
+.faq__image {
+    .col();
+    .size(5);
+    text-align: center;
+    .md(display, none);
+}
