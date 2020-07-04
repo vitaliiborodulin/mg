@@ -6,12 +6,22 @@
     color: #ffffff;
     font-size: 14px;
 
-    border: none;
+    border: 1px solid transparent;
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.5s;
 
     &:hover {
         background-color: darken(@accent, 10%);
+    }
+}
+
+.btn-o {
+    color: @accent;
+    border: 1px solid @accent;
+    background-color: transparent;
+
+    &:hover {
+        color: #fff;
     }
 }
