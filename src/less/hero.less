@@ -1,6 +1,6 @@
 .hero {
     overflow-y: hidden;
-    padding-top: 82px;
+    padding-top: 140px;
     padding-bottom: 55px;
     // min-height: 420px;
     background: url('../img/hero-bg.jpg') no-repeat center/cover;
@@ -12,10 +12,19 @@
 .hero__text {
 
     h1 {
+        max-width: 475px;
         margin-bottom: 54px;
         font-size: 44px;
-        font-weight: 900;
         line-height: 48px;
+        font-weight: 900;
+        .md-block({
+            font-size: 40px;
+            line-height: 44px;
+        });
+        .sm-block({
+            max-width: 100%;
+            text-align: center;
+        });
 
         color: #fff;
         text-shadow: 0px 4px 16px rgba(255, 164, 171, 0.75);
@@ -23,7 +32,16 @@
 }
 
 .form__text {
+    max-width: 50%;
     line-height: 21px;
+    .md-block({
+        font-size: 24px;
+        line-height: 28px;
+    });
+    .sm-block({
+        max-width: 100%;
+        text-align: center;
+    });
     margin-bottom: 19px;
     color: #454a5e;
 }
@@ -34,19 +52,29 @@
     padding: 10px;
     border: none;
     box-shadow: 0px 4px 16px 0px rgba(255, 164, 171, 0.75);
+    .md(display, block);
+    .sm-block({
+        margin-left: auto;
+        margin-right: auto;
+    });
 
     &[type=text] {
         margin-right: 23px;
+        .sm(margin-right, auto);
     }
 }
 
 .hero__btn {
     box-shadow: 0px 4px 16px 0px rgba(255, 164, 171, 0.75);
+    .sm-block({
+        margin: 0 auto;
+    })
 }
 
 .hero__img {
     position: absolute;
-    right: 100px;
-    top: 0;
-    .xs(display, none);
+    right: 50px;
+    top: -36px;
+    .md(right, -15px);
+    .sm(display, none);
 }
