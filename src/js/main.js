@@ -4,6 +4,8 @@
 
 $(function(){
 
+   //= components/header.js
+   //= components/burger.js
    //= components/scrollTop.js
    //= components/slider.js
    //= components/imageLightbox.js
