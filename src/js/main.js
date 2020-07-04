@@ -8,5 +8,6 @@ $(function(){
    //= components/slider.js
    //= components/imageLightbox.js
    //= components/faq.js
+   //= components/map.js
 
   });
