@@ -65,7 +65,11 @@
 }
 
 .footer__btn {
-    // max-width: 150px;
+    .md-block({
+        padding: 12px 40px;
+        // font-size: 23px;
+        border: 2px solid @accent;
+    })
 }
 
 .footer__contacts {
@@ -132,23 +136,31 @@
 }
 
 .footer__arrow {
-    display: none;
-    .md(display, block);
-
     position: absolute;
     content: '';
-    right: 3%;
-    top: -5%;
+    right: 15%;
+    top: -15%;
     z-index: 999;
-    width: 46px;
-    height: 46px;
+    width: 61px;
+    height: 61px;
     background-color: @accent;
     border-radius: 50%;
-    transform: rotate(90deg);
     text-decoration: none;
-    line-height: 46px;
-    color: #ffffff;
-    font-size: 46px;
-    padding-left: 10px;
+    text-align: center;
+    line-height: 61px;
+    .md-block({
+        right: 7%;
+        top: -7%;
+    });
+    .sm-block({
+        right: 50%;
+        transform: translateX(50%);
+    });
+
+    #arrowUp-svg {
+        width: 29px;
+        height: 17px;
+        fill: #fff;
+    }
 }
 

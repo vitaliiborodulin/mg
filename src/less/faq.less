@@ -10,6 +10,7 @@
 }
 
 .faq__content {
+    position: relative;
     .row-flex();
 }
 .faq__text {
@@ -113,4 +114,39 @@
     .size(5);
     text-align: center;
     .md(display, none);
+}
+
+.faq__online {
+    .md(display, none);
+
+    position: absolute;
+    content: '';
+    right: 0;
+    bottom: -17%;
+    z-index: 20;
+    width: 98px;
+    height: 98px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    background-color: @accent;
+    border-radius: 50%;
+    text-decoration: none;
+    color: #ffffff;
+    transition: background-color 0.5s;
+
+    &:hover {
+        background-color: darken(@accent, 10%);
+    }
+
+
+    img {
+        display: block;
+        width: 38px;
+        height: 38px;
+    }
 }
