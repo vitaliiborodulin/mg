@@ -1,5 +1,5 @@
 .feedback {
-    padding-top: 41px;
+    padding-top: 32px;
     padding-bottom: 57px;
     overflow-y: hidden;
     min-height: 530px;
@@ -32,8 +32,12 @@
 }
 
 .feedback__header {
-    margin-bottom: 23px;
+    margin-bottom: 13px;
     font-size: 25px;
+    .md-block({
+        font-size: 35px;
+        margin-bottom: 26px;
+    });
     font-weight: 500;
     color: @textcolorDark;
 }
@@ -42,10 +46,10 @@
     max-width: 460px;
     .md-block({
         margin: 0 auto;
+        max-width: 100%;
     });
     .form__text {
-
-        margin-bottom: 25px;
+        margin-bottom: 20px;
         line-height: 24px;
     }
 
@@ -60,7 +64,7 @@
 
     .form__input {
         width: 220px;
-        .sm(width, 100%);
+        .md(width, 100%);
         &:nth-child(odd){
             margin-right: 23px;
             .sm(margin-right, auto)
@@ -68,11 +72,11 @@
     }
 
     textarea {
-        margin-bottom: 27px;
+        margin-bottom: 17px;
     }
 
     .feedback__btn {
-        margin-bottom: 22px;
+        margin-bottom: 10px;
         .md-block({
             margin-left: auto;
             margin-right: auto;
@@ -80,7 +84,11 @@
     }
 
     small {
-        .md(text-align, center);
+        .md-block({
+            text-align: center;
+            display: inline-block;
+            max-width: 400px;
+        });
         a {
             color: @textcolor;
         }

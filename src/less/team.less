@@ -1,11 +1,12 @@
 .team {
-    padding-top: 58px;
+    padding-top: 17px;
+    .md(padding-top, 45px);
     padding-bottom: 49px;
     background-color: #f6f6ff;
 }
 
 .team__header {
-    margin-bottom: 27px;
+    margin-bottom: 36px;
 }
 .team__list {
     text-align: center;
@@ -20,16 +21,25 @@
         width: 200px!important;
         height: 200px;
         margin: 0 auto;
+        .md-block({
+            width: 250px!important;
+            height: 250px;
+        })
     }
 }
 
 .team__name {
-    margin-bottom: 10px;
+    margin-bottom: 3px;
     font-size: 18px;
+    .md(font-size, 25px);
     color: @textcolorDark;
 }
 
 .team__descr {
     font-size: 14px;
     line-height: 24px;
+    .md-block({
+        font-size: 25px;
+        line-height: 35px;
+    })
 }

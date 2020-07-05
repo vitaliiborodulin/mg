@@ -1,9 +1,11 @@
 .hero {
     overflow-y: hidden;
     padding-top: 140px;
+    .md(padding-top, 110px);
     padding-bottom: 55px;
     // min-height: 420px;
     background: url('../img/hero-bg.jpg') no-repeat center/cover;
+    .sm(background, #fad2d5);
 }
 
 .hero__content {
@@ -13,7 +15,8 @@
 
     h1 {
         max-width: 475px;
-        margin-bottom: 54px;
+        margin-bottom: 43px;
+        .md(margin-bottom, 30px);
         font-size: 44px;
         line-height: 48px;
         font-weight: 900;
@@ -46,7 +49,10 @@
     }
 
     .form__input {
-        .md(display, block);
+        .md-block({
+            display: block;
+            width: 310px;
+        });
         .sm-block({
             margin-left: auto;
             margin-right: auto;

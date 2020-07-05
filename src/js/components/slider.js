@@ -16,7 +16,7 @@ $('.team__list').owlCarousel({
         0:{
             items:1
         },
-        768:{
+        770:{
             items:3,
             dots: false
         }
@@ -33,7 +33,7 @@ $('.team__list').owlCarousel({
         0:{
             items:1,
         },
-        768:{
+        770:{
             items:4,
             dots: false
         }

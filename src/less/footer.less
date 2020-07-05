@@ -1,6 +1,6 @@
 .footer {
     position: relative;
-    padding-top: 30px;
+    padding-top: 42px;
     padding-bottom: 20px;
     min-height: 200px;
 }   
@@ -37,6 +37,7 @@
 .footer__navigation {
     margin-bottom: 25px;
     display: flex;
+    .md(margin-bottom, 35px);
     .sm-block({
         flex-direction: column;
         align-items: center;
@@ -52,6 +53,8 @@
         color: @textcolorDark;
 
         transition: color 0.5s;
+
+        .md(font-size, 21px);
         &:hover {
             color: @accent;
         }
@@ -62,7 +65,7 @@
 }
 
 .footer__btn {
-    max-width: 150px;
+    // max-width: 150px;
 }
 
 .footer__contacts {
@@ -77,8 +80,15 @@
 .footer__socials {
     font-size: 0;
     margin-bottom: 15px;
+    .md(margin-bottom, 38px);
 
     #instagram-svg {
+        width: 22px;
+        height: 22px;
+        .md-block({
+            width: 30px;
+            height: 30px;
+        });
         fill: @textcolor;
         &:hover {
             fill: @accent;
@@ -88,6 +98,7 @@
 }
 .footer__tel {
     margin-bottom: 8px;
+    .md(margin-bottom, 0);
     color: @textcolorDark;
     text-decoration: none;
 }

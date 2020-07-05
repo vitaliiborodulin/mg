@@ -16,7 +16,7 @@ var menu = $('.header__navigation');
 
       if($target.length > 0){
         $('html, body').animate({
-          scrollTop: $target.offset().top - 60
+          scrollTop: $target.offset().top - 70
         }, 700);
       }
 
