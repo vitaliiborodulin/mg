@@ -9,7 +9,7 @@ var menu = $('.header__menu');
         menu.toggleClass('header__menu--open');
       }
 
-      $links.removeClass('active').filter(this).addClass('active');
+      // $links.removeClass('active').filter(this).addClass('active');
 
       var link = $(this);
       var $target = $(link.attr('href'));
@@ -21,3 +21,16 @@ var menu = $('.header__menu');
       }
 
     });
+
+$('.footer__navigation a').on('click', function(e){
+  e.preventDefault();
+
+  var link = $(this);
+  var $target = $(link.attr('href'));
+
+  if($target.length > 0){
+    $('html, body').animate({
+      scrollTop: $target.offset().top - 70
+    }, 700);
+  }
+})
