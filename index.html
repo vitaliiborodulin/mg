@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Клиника косметологии MG Esthetic</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="shortcut icon" href="img/favicon.ico"/>
+</head>
+<body>
+  
+  <!-- шапка -->
+  <header class="header" id="header">
+      <div class="container">
+          <div class="header__content">
+  
+              <div class="burger"><span></span></div>
+  
+              <a href="/" class="header__logo">
+                  <img class="header__logo--desk" src="img/logo-header.svg" alt="">
+                  <img class="header__logo--mob" src="img/logo-header-mob.svg" alt="">
+              </a>
+  
+              
+              <div class="header__menu">
+                  <ul class="header__navigation">
+                      <li><a href="#about">О клинике</a></li>
+                      <li><a href="#services">Услуги и стоимость</a></li>
+                      <li><a href="#sert">Сертификаты и лицензии</a></li>
+                      <li><a href="#faq">Вопрос/ответ</a></li>
+                  </ul>
+  
+                  <ul class="header__mobile">
+                      <li><a class="header__tel" href="tel:+79161096541" >+7 916 109 65 41</a></li>
+                      <li><a class="header__email" href="mailto:info@mg-esthetic.ru">info@mg-esthetic.ru</a></li>
+                      <li><a href="#" class="btn btn-o header__btn">Онлайн запись</a></li>
+                  </ul>
+              </div>
+      
+              <div class="header__user">
+                  <a href="#" class="btn">Онлайн запись</a>
+              </div>
+  
+          </div>
+      </div>
+  </header>
+  <!-- end шапка -->
+
+  <!-- hero -->
+  <section class="hero">
+      <div class="container">
+          <div class="hero__content">
+  
+              <div class="hero__text">
+                  <h1>Клиника косметологии MG Esthetic</h1>
+                  <form class="form hero__form" action="server.php" method="POST">
+                      <div class="form__text">Забронируйте время <br>
+                          и получите бесплатную консультацию нашего специалиста:</div>
+                          <input class="form__input" type="text" name="name" placeholder="Имя"  required>
+                          <input class="form__input" type="tel" name="tel" placeholder="Телефон" required>
+                          <button type="submit" class="btn hero__btn">Свяжитесь со мной</button>
+                  </form>
+              </div>
+  
+              <div class="hero__img">
+                  <img src="img/hero-girl.png" alt="">
+              </div>
+  
+          </div>
+      </div>
+  </section>
+  <!-- end hero -->
+
+  <!-- services -->
+  <section class="services" id="services">
+      <div class="container">
+          <h2 class="section__header services__header">Услуги клиники</h2>
+  
+          <ul class="services__box">
+  
+              <li class="service__item">
+                  <img class="service__image" src="img/service-1.png" alt="">
+                  <h3 class="service__title">Женская лазерная эпиляция</h3>
+                  <a class="service__link" href="files/Zhenskaya_lazernaya_epil.pdf" target="_blank">Посмотреть прайс</a>
+              </li>
+  
+              <li class="service__item">
+                  <img class="service__image" src="img/service-2.png" alt="">
+                  <h3 class="service__title">Комплексные услуги</h3>
+                  <a class="service__link" href="files/Kompleksnye_uslugil.pdf" target="_blank">Посмотреть прайс</a>
+              </li>
+  
+              <li class="service__item">
+                  <img class="service__image" src="img/service-3.png" alt="">
+                  <h3 class="service__title">Мужская лазерная эпиляция</h3>
+                  <a class="service__link" href="files/Muzhskaya_lazernaya_epil.pdf" target="_blank">Посмотреть прайс</a>
+              </li>
+  
+              <li class="service__item">
+                  <img class="service__image" src="img/service-4.png" alt="">
+                  <h3 class="service__title">Косметология</h3>
+                  <a class="service__link" href="files/Kosmetologiya_Karbonovyi_piling.pdf" target="_blank">Посмотреть прайс</a>
+              </li>
+  
+              <li class="service__item">
+                  <img class="service__image" src="img/service-5.png" alt="">
+                  <h3 class="service__title">RF-лифтинг</h3>
+                  <a class="service__link" href="files/RF-lifting.pdf" target="_blank">Посмотреть прайс</a>
+              </li>
+  
+              <li class="service__item">
+                  <img class="service__image" src="img/service-6.png" alt="">
+                  <h3 class="service__title">Карбоновый пилинг</h3>
+                  <a class="service__link" href="files/Kosmetologiya_Karbonovyi_piling.pdf" target="_blank">Посмотреть прайс</a>
+              </li>
+  
+          </ul>
+          <a href="files/Full_price.pdf" class="btn service__btn" target="_blank">Посмотреть прайс</a>
+      </div>
+  </section>
+  <!-- end services -->
+
+  <!-- about -->
+  <section class="about" id="about">
+      <div class="container">
+          <h2 class="section__header about__header">О нас</h2>
+          <p class="about__descr">MG Esthetic — первая клиника лазерной эпиляции в Зеленограде. Работая с самым современным оборудованием и дипломированными специалистами, мы предоставляем сервис высочайшего уровня по приемлемым ценам.</p>
+  
+          <div class="about__box--desk">
+  
+              <div class="about__item">
+                  <div class="about__image">
+                      <img src="img/about-1.svg" alt="">
+                  </div>
+                  <h3 class="about__text">Индивидуальная настройка под тип внешности и волос по 50 показателям</h3>
+              </div>   
+  
+              <div class="about__item">
+                  <div class="about__image">
+                      <img src="img/about-2.svg" alt="">
+                  </div>
+                  <h3 class="about__text">Интенсивно воздействует на волосяные фолликулы, не затрагивая органы и кожу</h3>
+              </div>
+              
+              <div class="about__item">
+                  <div class="about__image">
+                      <img src="img/about-3.svg" alt="">
+                  </div>
+                  <h3 class="about__text">Наконечник из сапфира позволяет избежать ожогов и раздражений</h3>
+              </div>
+  
+              <div class="about__item">
+                  <div class="about__image">
+                      <img src="img/about-4.svg" alt="">
+                  </div>
+                  <h3 class="about__text">Уже после первого сеанса уходит более 30% волос на обработанной области</h3>
+              </div>
+  
+              <div class="about__item">
+                  <div class="about__image">
+                      <img src="img/about-5.svg" alt="">
+                  </div>
+                  <h3 class="about__text">Минимизирует болевые ощущения даже на гиперчувствительных зонах</h3>
+              </div>
+  
+              <div class="about__item">
+                  <div class="about__image">
+                      <img src="img/about-6.svg" alt="">
+                  </div>
+                  <h3 class="about__text">10 импульсов в секунду — процедура проходит быстро, каждый мм кожи гарантированно обрабатывается</h3>
+              </div>
+  
+          </div>
+  
+          <div class="about__box--mob">
+              <h2 class="section__header about__header about__header--mob">Новейшее оборудование</h2>
+              <p class="about__descr">Нам важно, чтобы клиенты нашей клиники чувствовали  себя комфортно, доверяли специалистам и могли расслабиться во время процедур. Для достижений этой цели мы создали все условия и постоянно развиваемся в плане совершенствования клиентского сервиса.</p>
+              <div class="about__picture--mob">
+                  <img src="img/about-image-mob.png" alt="">
+              </div>
+  
+              <div class="about__list--mob owl-carousel owl-theme">
+                  <div class="about__item about__item--mob">
+                      <div class="about__image about__image--mob">
+                          <img src="img/about-1.svg" alt="">
+                      </div>
+                      <h3 class="about__text--mob">Индивидуальная настройка под тип внешности и волос по 50 показателям</h3>
+                  </div>
+                  <div class="about__item about__item--mob">
+                      <div class="about__image about__image--mob">
+                          <img src="img/about-2.svg" alt="">
+                      </div>
+                      <h3 class="about__text--mob">Интенсивно воздействует на волосяные фолликулы, не затрагивая органы и кожу</h3>
+                  </div>
+                  <div class="about__item about__item--mob">
+                      <div class="about__image about__image--mob">
+                          <img src="img/about-3.svg" alt="">
+                      </div>
+                      <h3 class="about__text--mob">Наконечник из сапфира позволяет избежать ожогов и раздражений</h3>
+                  </div>
+                  <div class="about__item about__item--mob">
+                      <div class="about__image about__image--mob">
+                          <img src="img/about-4.svg" alt="">
+                      </div>
+                      <h3 class="about__text--mob">Уже после первого сеанса уходит более 30% волос на обработанной области</h3>
+                  </div>
+                  <div class="about__item about__item--mob">
+                      <div class="about__image about__image--mob">
+                          <img src="img/about-5.svg" alt="">
+                      </div>
+                      <h3 class="about__text--mob">Минимизирует болевые ощущения даже на гиперчувствительных зонах</h3>
+                  </div>
+                  <div class="about__item about__item--mob">
+                      <div class="about__image about__image--mob">
+                          <img src="img/about-6.svg" alt="">
+                      </div>
+                      <h3 class="about__text--mob">10 импульсов в секунду — процедура проходит быстро, каждый мм кожи гарантированно обрабатывается</h3>
+                  </div>    
+              </div>
+              
+          </div>
+  
+  
+      </div>
+  </section>
+  <!-- end about -->
+
+  <!-- team -->
+  <section class="team">
+      <div class="container">
+          <h2 class="section__header team__header">Наша команда</h2>
+  
+          <div class="team__list owl-carousel owl-theme">
+              <div class="team__item">
+                  <div class="team__img">
+                      <img src="img/team-1.png" alt="">
+                  </div>
+                  <h3 class="team__name">Фомина Юлия</h3>
+                  <p class="team__descr">Специалист лазерной эпиляции/косметолог</p>
+              </div>
+              <div class="team__item">
+                  <div class="team__img">
+                      <img src="img/team-2.png" alt="">
+                  </div>
+                  <h3 class="team__name">Фасхутдинова Ангелина</h3>
+                  <p class="team__descr">Специалист лазерной эпиляции</p>
+              </div>
+              <div class="team__item">
+                  <div class="team__img">
+                      <img src="img/team-3.png" alt="">
+                  </div>
+                  <h3 class="team__name">Иванова Анна</h3>
+                  <p class="team__descr">Специалист лазерной эпиляции/косметолог</p>
+              </div>
+              <div class="team__item">
+                  <div class="team__img">
+                      <img src="img/team-4.png" alt="">
+                  </div>
+                  <h3 class="team__name">Стасенко Юлия</h3>
+                  <p class="team__descr">Администратор</p>
+              </div>
+          </div>
+          
+      </div>
+  </section>
+  <!-- end team -->
+
+  <!-- brands -->
+  <section class="brands">
+      <div class="container">
+          <div class="brands__content">
+  
+              <div class="brands__pictures">
+                  <div class="brand__main">
+                      <img src="img/brand-1.png" alt="">
+                  </div>
+                  <div class="brand__sec">
+                      <img src="img/brand-2.png" alt="">
+                      <img src="img/brand-3.png" alt="">
+                  </div>
+              </div>
+  
+              <div class="brands__text">
+                  <h2 class="brands__header">Производители с мировым именем</h2>
+                  <p class="brands__descr">У нас на службе высокие технологии, новейшее оборудование, 
+                      эффективные зарубежные препараты и революционныеавторские методики.</p>
+              </div>
+              
+          </div>
+      </div>
+  </section>
+  <!-- end brands -->
+
+  <!-- sert -->
+  <section class="sert" id="sert">
+      <div class="container">
+  
+          <h2 class="section__header sert__header">Сертификаты и лицензии</h2>
+          <p class="sert__descr">Деятельность клиники MG Esthetic строго регламентирована рядом медицинских сертификатов и лицензий, подлинность которых Вы можете проверить в открытых базах лицензий на медицинскую деятельность.</p>
+  
+          <div class="sert__list owl-carousel owl-theme">
+  
+              <div class="sert__item">
+                  <a data-imagelightbox="sert" href="img/sert-1.jpg">
+                      <img src="img/sert-1.jpg" alt="">
+                  </a>
+              </div>
+  
+              <div class="sert__item">
+                  <a data-imagelightbox="sert" href="img/sert-1.jpg">
+                      <img src="img/sert-1.jpg" alt="">
+                  </a>
+              </div>
+  
+              <div class="sert__item">
+                  <a data-imagelightbox="sert" href="img/sert-1.jpg">
+                      <img src="img/sert-1.jpg" alt="">
+                  </a>
+              </div>
+  
+              <div class="sert__item">
+                  <a data-imagelightbox="sert" href="img/sert-1.jpg">
+                      <img src="img/sert-1.jpg" alt="">
+                  </a>
+              </div>
+  
+          </div>
+  
+      </div>
+  </section>
+  <!-- end sert -->
+
+  <!-- gift -->
+  <section class="gift">
+      <div class="container">
+          <div class="gift__content">
+  
+              <div class="gift__pictures">         
+                  <img src="img/gift.png" alt="">
+              </div>
+  
+              <div class="gift__text">
+                  <h2 class="gift__header">Подарочный сертификат</h2>
+                  <p class="gift__descr">У нас в клинике Вы можете приобрести подарочный сертификат на любую сумму и порадовать своих близких отличным подарком в стильной упаковке!</p>
+              </div>
+              
+          </div>
+      </div>
+  </section>
+  <!-- end gift -->
+
+  <!-- faq -->
+  <section class="faq" id="faq">
+      <div class="container">
+          <div class="faq__content">
+  
+              <div class="faq__text">
+                  <h2 class="faq__header">Частые вопросы</h2>
+                  <div class="faq__box">
+  
+                      <div class="faq__item">
+                          <div class="faq__question">Как подготовиться к лазерной эпиляции?</div>
+                          <ul class="faq__answer">
+                              <li>не загорать 2 недели. Чем больше контрастность между кожей и волосом, тем эффективнее пройдет сеанс</li>
+                              <li>сбрить волосы за 1-2 дня до процедуры. Волосы должны быть менее 1 мм</li>
+                              <li>не использовать воск и шугаринг минимум 20 дней. Во время этих видов депиляции волосы вырывается с луковицей, на которую должен влияет лазер</li>
+                          </ul>
+                      </div>
+  
+                      <div class="faq__item">
+                          <div class="faq__question">Как проходит процедура лазерной эпиляции?</div>
+                          <ul class="faq__answer">
+                              <li>врач-кометолог беседует с вами, собирает анамнез, проводит осмотр. Определяет, подходит ли вам лазерная эпиляция. Если процедура вам показана, то приступаем</li>
+                              <li>специалист подготавливает ваш индивидуальный набор одноразовых материалов для процедуры</li>
+                              <li>врач наносит специальный ультразвуковой гель на обрабатываемую зону</li>
+                              <li>врач и пациент надевают защитные очки</li>
+                              <li>специалист включает аппарат, выбирает методику, задает ваши индивидуальные параметры</li>
+                              <li>косметолог прижимает к вашему телу манипулу и проводит по выбранному участку. В местах с гиперчувствительной кожей врач снижает мощность аппарата</li>
+                              <li>важно: мы не экономим и не считаем вспышки, так как работаем на результат</li>
+                              <li>после процедуры косметолог удаляет гель, очищает кожу и при необходимости наносит солнцезащитный или успокаивающий кремы</li>
+                              <li>вы получаете все рекомоендации по процедуре, а также план вашего индивидуального курса</li>
+                          </ul>
+                      </div>
+  
+                      <div class="faq__item">
+                          <div class="faq__question">Ограничения после процедуры</div>
+                          <ul class="faq__answer">
+                              <li>воздержитесь от посещения бассейна, сауны, бани или тренажерного зала 2-3 дня</li>
+                              <li>можно загорать через 7-10 дней после процедуры</li>
+                              <li>исключите любые способы эпиляции, удаляющие волосы с корнем, кроме бритвы или депиляционного крема</li>
+                              <li>индивидуальные рекомендации даст врач-косметолог, который проводил процедуру</li>
+                          </ul>
+                      </div>
+  
+                      <div class="faq__item">
+                          <div class="faq__question">Сколько нужно сеансов лазерной эпиляции?</div>
+                          <ul class="faq__answer">
+                              <li>Для достижения максимального эффекта потребуется курс из 5-8 процедур с интервалом 4-8 недель</li>
+                          </ul>
+                      </div>
+  
+                      <div class="faq__item">
+                          <div class="faq__question">Противопоказания к лазерной эпиляции</div>
+                          <ul class="faq__answer">
+                              <li>очень смуглая или загорелая кожа</li>
+                              <li>открытые раны, воспаления на коже</li>
+                              <li>инфекционные заболевания кожи</li>
+                              <li>сахарный диабет</li>
+                              <li>онкологические заболевания</li>
+                              <li>ВИЧ-инфекция</li>
+                              <li>обострение хронических заболеваний</li>
+                              <li>беременность</li>
+                              <li>если у вас есть какие-то хронические заболевания, обязательно расскажите о них на бесплатной консультации у врача-косметолога!</li>
+                          </ul>
+                      </div>
+  
+                      <div class="faq__item">
+                          <div class="faq__question">Можно ли делать лазерную эпиляцию во время беременности и кормления?</div>
+                          <ul class="faq__answer">
+                              <li>Во время беременности делать лазерную эпиляцию нельзя, так как нет исследований влияния лазерной эпиляции на плод. Делать лазерную эпиляцию во время кормления грудью не рекомендуется. Из-за нестабильного гормонального фона у женщины в период лактации эффективность от процедур непредсказуема.</li>
+                          </ul>
+                      </div>
+  
+                  </div>
+              </div>
+              <div class="faq__image">
+                  <img src="img/faq-image.png" alt="">
+              </div>
+  
+              <a href="#" class="faq__online">
+                  <img src="img/feedback-online.svg" alt="">
+                  <span>Онлайн запись</span>
+              </a>
+  
+          </div>
+      </div>
+  </section>
+  <!-- end faq -->
+
+  <!-- feedback -->
+  <section class="feedback">
+      <div class="container">
+          <div class="feedback__content">
+  
+              <div class="feedback__img">
+                  <img src="img/feedback-girl.png" alt="">
+              </div>
+  
+              <div class="feedback__text">
+                  <h2 class="feedback__header">У вас остались вопросы?</h2>
+  
+                  <form class="form feedback__form" action="server.php" method="POST">
+                      <div class="form__text">Свяжитесь с нами и мы с удовольствием ответим на любой Ваш вопрос,
+                          касающийся нашей студии.</div>
+                          <p>
+                              <input class="form__input" type="text" name="name" placeholder="Имя"  required>
+                              <input class="form__input" type="mail" name="mail" placeholder="Email" required>
+                          </p>
+                          <p>
+                              <input class="form__input" type="tel" name="tel" placeholder="Телефон">
+                              <input class="form__input" type="text" name="topic" placeholder="Тема обращения">
+                          </p>
+                          <textarea name="message">Ваш комментарий</textarea>
+                          <button type="submit" class="btn feedback__btn">Отправить</button>
+                          <small>Нажимая кнопку «Отправить», Вы соглашаетесь с <a href="files/Confidencial.pdf" target="_blank">Политикой конфиденциальности</a></small>
+                  </form>
+              </div>
+  
+          </div>
+      </div>
+  </section>
+  <!-- end feedback -->
+
+  <!-- map -->
+  <section class="map">
+      <div id="map_container">
+          <span>Загрузить карту</span>
+          <!-- <script id="ymap_lazy" data-skip-moving="true" charset="utf-8" data-src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab48644bdd1931302fc90d3286bc35c5bae25838d8c27661b8ea865896a889f47&amp;width=100%25&amp;height=300&amp;lang=ru_RU&amp;scroll=false"></script> -->
+      </div>
+  </section>
+  <!-- end map -->
+
+  <!-- footer -->
+  <footer class="footer">
+      <div class="container">
+  
+          <div class="footer__top">
+  
+              <a href="/" class="footer__logo">
+                  <img src="img/logo-footer.svg" alt="">
+              </a>
+  
+              <nav class="footer__menu">
+                  <ul class="footer__navigation">
+                      <li><a href="#about">О клинике</a></li>
+                      <li><a href="#services">Услуги и стоимость</a></li>
+                      <li><a href="#sert">Сертификаты и лицензии</a></li>
+                      <li><a href="#faq">Вопрос/ответ</a></li>
+                  </ul>
+                  <a href="#" class="btn btn-o footer__btn">Онлайн запись</a>
+              </nav>
+  
+              <div class="footer__contacts">
+                  <div class="footer__socials">
+                      <a href="https://www.instagram.com/laserepilation/?hl=ru" target="_blank" title="Наш инстаграм">
+                          <svg id="instagram-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 169.06 169.06">
+                              <path d="M122.41,0H46.65A46.71,46.71,0,0,0,0,46.65v75.75a46.71,46.71,0,0,0,46.65,46.66h75.75a46.71,46.71,0,0,0,46.66-46.66V46.65A46.71,46.71,0,0,0,122.41,0Zm31.66,122.41a31.69,31.69,0,0,1-31.66,31.66H46.65A31.69,31.69,0,0,1,15,122.41V46.65A31.69,31.69,0,0,1,46.65,15h75.75a31.69,31.69,0,0,1,31.66,31.65v75.75Z" />
+                              <path d="M84.53,41a43.56,43.56,0,1,0,43.56,43.56A43.61,43.61,0,0,0,84.53,41Zm0,72.12a28.56,28.56,0,1,1,28.56-28.56A28.6,28.6,0,0,1,84.53,113.09Z"/>
+                              <path d="M129.92,28.25a11,11,0,1,0,7.78,3.22A11,11,0,0,0,129.92,28.25Z"/>
+                          </svg>
+                          instagram
+                      </a>
+                  </div>
+                  <a class="footer__tel" href="tel:+79161096541" >+7 916 109 65 41</a>
+                  <a class="footer__email" href="mailto:info@mg-esthetic.ru">info@mg-esthetic.ru</a>
+              </div>
+          </div>
+          
+  
+          <div class="footer__bottom">
+              <div class="footer__copy">
+                  &copy; 2018 — 2020 ООО “МГ ЭСТЕТИК”
+              </div>
+              <div class="footer__dev">
+                  Разработка сайта: <a href="https://spnk.graphics/" target="_blank">SPNK.graphics</a>
+              </div>
+          </div>
+  
+          <a class="footer__arrow" href="#" title="Наверх">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595.28 321.49" id="arrowUp-svg">
+                  <path class="cls-1" d="M281.3,6.78,6.73,282.12A23.07,23.07,0,0,0,39.41,314.7L297.64,55.76l258.23,259a23.07,23.07,0,0,0,32.67-32.59L314,6.78a23.06,23.06,0,0,0-32.67,0Z"/>
+              </svg>
+          </a>
+      </div>
+  </footer>
+  <!-- end footer -->
+
+  <script src="js/script.js"></script>
+</body>
+</html>
