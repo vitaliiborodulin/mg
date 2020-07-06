@@ -15,11 +15,13 @@
 .header__content {
     min-height: 60px;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
 }
 
 .header__logo {
+    margin: 0 auto;
+
     .header__logo--desk {
         .md(display, none);
         width: 179px;
@@ -33,8 +35,13 @@
     }
 }
 
+.header__menu {
+    padding: 0 10px;
+}
+
 .header__navigation {
     display: flex;
+    flex-wrap: wrap;
     .md(display, none);
 
     a {
@@ -43,30 +50,61 @@
         color: inherit;
 
         transition: color 0.5s;
-        &:hover {
+        &:hover, &.active  {
             color: @accent;
-        }
-        &.active {
-            color: @accent;
-        }
-    }
-
-    &--open {
-        position: relative;
-        z-index: 20;
-        display: block!important;
-        position: absolute;
-        left: 0;
-        top: 57px;
-        width: 100%;
-        background-color: #fff;
-
-        li {
-            padding: 10px;
         }
     }
 }
 
+.header__mobile {
+    display: none;
+}
+
+.header__menu--open {
+    padding: 0 10px 20px;
+    position: absolute;
+    left: 0;
+    top: 57px;
+    display: flex;
+    background-color: #fff;
+    flex-direction: column;
+    
+   .header__navigation {
+        display: block!important;
+        margin-bottom: 10px;
+
+        li {
+            padding: 10px;
+        }
+   }
+
+   .header__mobile {
+        margin-top: 20px;
+        display: block!important;
+
+        a {
+            display: block;
+            text-decoration: none;
+            color: @textcolorDark;
+        }
+        .header__tel, .header__email {
+            padding: 0 20px;
+        }
+        .header__btn {
+            margin-top: 10px;
+            text-align: center;
+            color: @accent;
+            font-size: 24px;
+            border: 2px solid @accent;
+            padding: 12px 30px;
+        }
+   }
+
+}
+
 .header__user {
     .md(display, none);
+    a {
+        width: 150px;
+    }
 }

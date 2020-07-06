@@ -1,12 +1,12 @@
 var $links = $('.header__navigation a');
-var menu = $('.header__navigation');
+var menu = $('.header__menu');
 
     $links.on('click', function(e){
       e.preventDefault();
 
-      if (menu.hasClass('header__navigation--open')){
+      if (menu.hasClass('header__menu--open')){
         $('.burger').toggleClass('burger--close');
-        menu.toggleClass('header__navigation--open');
+        menu.toggleClass('header__menu--open');
       }
 
       $links.removeClass('active').filter(this).addClass('active');
