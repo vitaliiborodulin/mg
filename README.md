@@ -4,8 +4,7 @@
 
 1. *Less* (simple and  powerful css preprocessor)
 2. *Smartgrid* (very flexible grid framefork)
-3. *Rigger* for concat html
-4. *webpack* for bundle js
+3. *Rigger* for concat html and js
 
 ## Usage
 
