@@ -1,36 +1,20 @@
-var $links = $('.home .header__navigation a');
+var $links = $('.header__navigation a');
 var menu = $('.header__menu');
 
     $links.on('click', function(e){
-      // e.preventDefault();
       
       if (menu.hasClass('header__menu--open')){
         $('.burger').toggleClass('burger--close');
         menu.toggleClass('header__menu--open');
       }
 
-      // $links.removeClass('active').filter(this).addClass('active');
-
-      // var link = $(this);
-      // var $target = $(link.attr('href'));
-
-      // if($target.length > 0){
-      //   $('html, body').animate({
-      //     scrollTop: $target.offset().top - 70
-      //   }, 700);
-      // }
     
     });
 
-$('.footer__navigation a').on('click', function(e){
-  // e.preventDefault();
-
-  // var link = $(this);
-  // var $target = $(link.attr('href'));
-
-  // if($target.length > 0){
-  //   $('html, body').animate({
-  //     scrollTop: $target.offset().top - 70
-  //   }, 700);
-  // }
-})
+$('body').on('click', '[href*="/#"]', function(e){
+    var fixed_offset = 85;
+    $('html,body').stop().animate({ 
+      scrollTop: $(this.hash).offset().top - fixed_offset 
+    }, 1000);
+  e.preventDefault();
+});
