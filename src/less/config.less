@@ -77,6 +77,9 @@ textarea {
 		border-color: green
 	}
 }
+html {
+	scroll-behavior: smooth;
+}
 
 body {
 	font-size: @fontsize;
@@ -91,12 +94,22 @@ body {
   	// letter-spacing: 0.01em;
 }
 
+.section {
+	padding: 100px 0;
+}
+
 .section__header {
 	font-size: 25px;
 	.md(font-size, 35px);
 	font-weight: 500;
 	color: @textcolorDark;
 	text-align: center;
+}
+
+.privacy-policy {
+	.footer__arrow {
+		display: none;
+	}
 }
 
 

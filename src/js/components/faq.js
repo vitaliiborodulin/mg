@@ -6,6 +6,6 @@ $('.faq__question').on('click', function(){
     $('.faq__question').removeClass('faq__question--open');
     $(this).addClass('faq__question--open');
 
-    $('.faq__answer:visible').not(answer).slideUp(200);
+    $('.faq__answer:visible').not(answer).hide(200);
     answer.slideDown(200);
 })
