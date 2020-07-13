@@ -34,7 +34,7 @@ $('.team__list').owlCarousel({
             items:1,
         },
         770:{
-            items:4,
+            items:3,
             dots: false
         }
     }
